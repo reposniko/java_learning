@@ -30,7 +30,15 @@ public class UserQueryService {
         List<UserVO> result = new ArrayList<>();
         result = users.stream()
                 .filter(user -> "Active".equals(user.getStatus()) && user.getAge() >= 18)
-                .sorted(Comparator.comparing(User::getAge))
+                .sorted(
+                Comparator.comparing(User::getAge)
+                        .thenComparing(
+                                User::getUsername,
+                                Comparator.nullsLast(
+                                        Comparator.naturalOrder()
+                                )
+                        )
+        )
                 .map(user -> new UserVO(user.getId(),
                                            user.getUsername(),
                                             user.getCreatedAt() == null
@@ -51,13 +59,13 @@ public class UserQueryService {
         boolean result;
         result = users.stream()
                 .anyMatch(
-                        user -> user.getAge() >= 18
+                        user -> user.getAge() < 18
                 );
         return result;
     }
     public static Optional<User> findFirstInactiveUser(List<User> users){
         return users.stream()
-                .filter(user -> "INACTIVE".equals(user.getStatus()))
+                .filter(user -> "INActive".equals(user.getStatus()))
                 .findFirst();
     }
 

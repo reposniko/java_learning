@@ -9,14 +9,40 @@ sorted不会改变原List的顺序，List.sort会改变
 4. map() 为什么特别适合Entity → VO？
 map是用于将每个元素执行一个映射操作，并用映射结果替换为原来的元素
 5. anyMatch() 适合什么业务场景？
+   anyMatch()用于判断集合中是否至少存在一个满足条件的元素。
 
+例如：
+判断是否存在未成年用户；
+判断订单中是否存在已退款订单；
+判断用户是否拥有ADMIN权限。
+
+返回boolean。
 6. findFirst() 为什么通常返回Optional？
 因为可能会出现找不到的情况，使用Optional就是提前告知了可能会返回null
 7. Stream的：
    中间操作
    终止操作
    分别是什么意思？
+   
+-- --
+中间操作：
+   filter
+   map
+   sorted
 
+特点：
+返回新的Stream
+可以继续链式调用
+通常是惰性执行
+中间操作：
+filter
+map
+sorted
+
+特点：
+返回新的Stream
+可以继续链式调用
+通常是惰性执行
 8. removeIf() 与 stream().filter()
    最大区别是什么？
 removeIf会删除原始集合的数据，而stream.filter不会

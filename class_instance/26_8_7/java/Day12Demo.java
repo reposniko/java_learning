@@ -11,11 +11,12 @@ public class Day12Demo {
         User u2 = new User(2L, "Jerry",22,"Active");
         User u3 = new User(3L, "Alice",18,"INActive");
         User u4 = new User(4L, "Jack",18,"Active");
-        User u5 = new User(5L, "Bob",25,"Active");
+        User u5 = new User(5L, "Bob",15,"Active");
         User u6 = new User(6L, null,20,"Active");
         User u7 = new User(7L, null,29,"Active");
         User u8 = new User(8L, "Damn",49,"INActive");
         List<User> users = new ArrayList<>();
+        users.add(u8);
         users.add(u1);users.add(u2);users.add(u3);users.add(u4);users.add(u5);users.add(u6);users.add(u7);
         UserQueryService uqs = new UserQueryService();
         System.out.println("task1" + uqs.findActiveAdults(users));
