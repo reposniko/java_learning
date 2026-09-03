@@ -51,9 +51,10 @@ public class Day11Demo {
         try{
             List<String> status =
                     List.of("ACTIVE", "INACTIVE");
-        }catch (Exception e)
+            status.add("DELETED");
+        }catch (UnsupportedOperationException e)
         {
-            return;
+            System.out.println("List.of不可被修改");
         }
         List<String> original1 =
                 new ArrayList<>();
