@@ -49,14 +49,12 @@ public class Day11Demo {
         List<User> original2 = new ArrayList<>(users);
         List<User> copy2 = new ArrayList<>(original2);
 
-        copy2.get(0).setUsername("CHANGED");
+
 
         System.out.println(
                 original2.get(0).getUsername()
         );
         copy2.get(0).setUsername("CHANGED");
-        System.out.println("task4"+ original.get(0).getUsername());
-
         //task5
         try{
             List<String> status =

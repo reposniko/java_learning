@@ -28,8 +28,22 @@ readonly和original底层仍然关联同一份集合数据，
 10. new ArrayList<>(users)为什么是浅拷贝？
     为什么修改List结构互不影响，
     但修改User属性仍可能互相影响？
-    nmodifiableList只是基于original创建一个不可修改视图。
+-- --
+    new ArrayList<>(users) 会创建一个新的 List，
+    所以两个 List 的结构是独立的。
 
-readonly和original底层仍然关联同一份集合数据，
-所以修改original后，
-通过readonly也能观察到变化。
+但是新 List 中保存的仍然是原来的 User 对象引用，
+User 对象本身没有重新创建。
+
+因此：
+
+copy.clear()
+不会影响 users 的 List 结构。
+
+但：
+
+copy.get(0).setUsername(...)
+修改的是双方共享的 User 对象，
+所以 users 中对应的 User 属性也会发生变化。
+
+因此 new ArrayList<>(users) 属于浅拷贝。
