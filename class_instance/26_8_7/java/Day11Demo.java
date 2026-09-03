@@ -19,9 +19,10 @@ public class Day11Demo {
             User u4 = new User(4L, "Jack",18,"Active");
             User u5 = new User(5L, "Bob",25,"Active");
             User u6 = new User(6L, null,20,"Active");
+        User u7 = new User(7L, null,29,"Active");
         List<User> users = new ArrayList();
         users.add(u1);
-        users.add(u2);users.add(u3);users.add(u4);users.add(u5);users.add(u6);
+        users.add(u2);users.add(u3);users.add(u4);users.add(u5);users.add(u6);users.add(u7);
 
         List<Integer> nubmers = new ArrayList<>();
         nubmers.add(8);
@@ -44,7 +45,16 @@ public class Day11Demo {
         List<User> copy = new ArrayList<>(original);
         original.clear();
         System.out.println("task4"+ copy);
-        copy.get(0).setUsername("CHANGED");
+
+        List<User> original2 = new ArrayList<>(users);
+        List<User> copy2 = new ArrayList<>(original2);
+
+        copy2.get(0).setUsername("CHANGED");
+
+        System.out.println(
+                original2.get(0).getUsername()
+        );
+        copy2.get(0).setUsername("CHANGED");
         System.out.println("task4"+ original.get(0).getUsername());
 
         //task5
@@ -65,6 +75,12 @@ public class Day11Demo {
                 Collections.unmodifiableList(original1);
 
         original1.add("INACTIVE");
-        System.out.println("task5"+ original1);
+        System.out.println("task5"+ readonly);
+        try {
+            readonly.add("DELETED");
+        } catch (UnsupportedOperationException e) {
+            System.out.println("readonly不能直接修改");
+        }
+
     }
 }

@@ -1,5 +1,5 @@
 1. Collections.sort() 和 List.sort() 有什么区别？
-Collection.sort()是Collection类里的静态方法，而List.sort是List对象里的静态方法，
+Collections.sort()是Collections类里的静态方法，而List.sort是List对象里的实例方法，
 2. Comparator.comparing() 做什么？
    把“按对象的哪个属性排序”这件事，变成一个 Comparator 比较器。
 3. thenComparing() 什么时候进行第二字段比较？
@@ -13,8 +13,14 @@ Collection.sort()是Collection类里的静态方法，而List.sort是List对象�
     用于解决属性值为null的元素的排序，将其排在最后一位
 7. List.of() 有什么特点？
     List.of()中的元素不能为空
+    List.of()创建的是不可修改的List->不允许对集合进行add,remove,set等操作
 8. unmodifiableList有没有复制原List？
    为什么修改original后readonly也变化？
+   nmodifiableList只是基于original创建一个不可修改视图。
+
+readonly和original底层仍然关联同一份集合数据，
+所以修改original后，
+通过readonly也能观察到变化。
 
 9. 什么是防御性复制？
    为什么Service可能不应该直接修改传入List？
@@ -22,5 +28,8 @@ Collection.sort()是Collection类里的静态方法，而List.sort是List对象�
 10. new ArrayList<>(users)为什么是浅拷贝？
     为什么修改List结构互不影响，
     但修改User属性仍可能互相影响？
-new ArrayList<>()仅仅是复制了结构，实际上只是将其新建的对象指向另一个对象
-    这就是浅拷贝，修改List的结构并没有真实涉及到他们所指向的对象的集合结构，而修改users会直接影响两个指向users的集合
+    nmodifiableList只是基于original创建一个不可修改视图。
+
+readonly和original底层仍然关联同一份集合数据，
+所以修改original后，
+通过readonly也能观察到变化。
